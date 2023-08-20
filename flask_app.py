@@ -61,5 +61,21 @@ def delete_customer():
     response = delete_customer_information(customer_id)
     return jsonify(response)
 
+@app.route('/add_advisor', methods = ['POST'])
+@require_auth()
+def add_advisor():
+    advisorDetails = advisors.query.filter_by(login_id = request.get_json().get('id')).first()
+
+    if advisorDetails is None :
+        advisor = advisors(login_id = request.get_json().get('id'), 
+                        name = request.get_json().get('name'), 
+                        email = request.get_json().get('email'), 
+                        age = request.get_json().get('age'), 
+                        phone_number = request.get_json().get('phone_number'))
+        db.session.add(advisor)
+        db.session.commit()
+    response = advisors.query.filter_by(login_id = request.get_json().get('id')).first()
+    return jsonify(response.id)
+
 if __name__ == "__main__":
     app.run()
