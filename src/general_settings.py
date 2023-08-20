@@ -1,7 +1,5 @@
-import requests
 from src.models import advisors, customers
 from src.tokens_and_roles import get_roles
-
 
 def get_user_details(user_roles, id):
     user_info = {}
@@ -28,8 +26,6 @@ def get_user_details(user_roles, id):
                 'role': 'customer'
             }
     return user_info
-
-
 
 def get_general_settings(id):
     user_roles = get_roles(id)

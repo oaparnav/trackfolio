@@ -1,6 +1,4 @@
-
-from src.models import advisors, customers
-
+from src.models import customers
 
 def get_customers_info_under_advisor(advisor_id):
     customers_list = customers.query.filter_by(advisor_id = advisor_id).all()

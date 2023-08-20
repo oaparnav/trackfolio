@@ -1,5 +1,3 @@
-from functools import wraps
-from dotenv import find_dotenv
 from flask import app, Flask, request, jsonify
 from authlib.integrations.flask_oauth2 import ResourceProtector
 from src.general_settings import get_general_settings
@@ -10,7 +8,6 @@ from src.customers.create_customer import new_customer_creation
 from src.validator import Auth0JWTBearerTokenValidator, authenticate_user_role
 import ssl 
 ssl._create_default_https_context = ssl._create_unverified_context
-import requests
 from src.models import advisors, db
 
 app = Flask(__name__)
